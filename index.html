@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <script>
+            let globalId = 1;
+            let todoState = [];
+            let oldTodoState = [];
+
+            // Adds new todos and pushes to the todoState array.
+            function addTodo(){
+                const title = document.getElementById("title").value;
+                const description = document.getElementById("description").value;
+                todoState.push({
+                    title: title,
+                    description: description,
+                    id: globalId++
+                })
+                // Calling the updateState function to keep track whether todo was added, deleted or updated.
+                updateState(todoState);
+            }
+
+            // This function Removes todofrom the existing state list/object
+            function removeTodo(todo){
+                const element = document.getElementById(todo.id);
+                element.parent.removeChild(element); 
+            }
+
+            // updates the new todo State and compares with the old one to render changes on the screen 
+            function updateTodo(oldTodo, newTodo){
+                const element = document.getElementById(oldTodo.id);
+                element.children[0].innerHTML = newTodo.title;
+                element.children[1].innerHTML = newTodo.description;
+                element.children[0].innerHTML = newTodo.completed ? "Mark as Done" : "Done";
+            }
+            
+            // updates the state each time a todo is added, deleted or updated.
+            function updateState(newTodos){
+                const added = [];
+                const deleted = [];
+                const updated = [];
+
+                oldTodoState = newTodos;
+            }
+
+        </script>
+    </head>
+
+</head>
+
+</html>
